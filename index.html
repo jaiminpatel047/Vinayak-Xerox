@@ -1,0 +1,432 @@
+<!-- =========================
+  index.html (FULL)
+========================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vinayak Xerox And Stationery</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- =========================
+    HEADER
+  ========================= -->
+  <header>
+    <nav>
+      <div class="logo">📋 Vinayak Stationery</div>
+
+      <div class="nav-right">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#whatsapp">WhatsApp</a></li>
+          <li><a href="#map">Map</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <div class="theme-toggle-slider">☀️</div>
+        </div>
+
+        <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- =========================
+    HERO
+  ========================= -->
+  <section class="hero" id="home">
+    <div class="hero-slider">
+      <div class="hero-slide active" style="--bg: url('./images/1.webp');"></div>
+      <div class="hero-slide" style="--bg: url('./images/2.webp');"></div>
+      <div class="hero-slide" style="--bg: url('./images/3.webp');"></div>
+    </div>
+
+    <div class="hero-content">
+      <h1>Welcome to Vinayak Stationery & Xerox</h1>
+      <p>Your one-stop solution for stationery, printing, and xerox services with quality you can trust.</p>
+      <a href="#contact" class="cta-button">Get in Touch</a>
+    </div>
+
+    <div class="slider-controls" aria-label="Hero slider controls">
+      <span class="slider-dot active" data-slide="0"></span>
+      <span class="slider-dot" data-slide="1"></span>
+      <span class="slider-dot" data-slide="2"></span>
+    </div>
+  </section>
+
+  <!-- =========================
+    SERVICES
+  ========================= -->
+  <section class="services" id="services">
+    <h2 class="section-title">Our Services</h2>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📄</div>
+        <h3>Xerox & Printing</h3>
+        <p>High-quality black & white and color printing services at affordable rates.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📚</div>
+        <h3>Stationery Items</h3>
+        <p>Notebooks, pens, files, and complete office supplies.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🖨️</div>
+        <h3>Lamination</h3>
+        <p>Protect and preserve your important documents professionally.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📎</div>
+        <h3>Binding Services</h3>
+        <p>Spiral binding, thermal binding and more for reports & projects.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🖼️</div>
+        <h3>Scanning</h3>
+        <p>Document scanning and digital conversion in high resolution.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">✉️</div>
+        <h3>Custom Printing</h3>
+        <p>Business cards, letterheads, invitations and custom printing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+    GALLERY
+  ========================= -->
+  <section class="gallery-section" id="gallery">
+    <div class="gallery-container">
+      <div class="gallery-header">
+        <h2>📸 Our Shop Gallery</h2>
+        <p>Take a virtual tour of our store and see our products & services</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openGalleryModal(this.querySelector('img'));">
+          <img src="./images/1.webp" alt="Stationery Items Collection" loading="lazy" />
+        </div>
+
+        <div class="gallery-item" onclick="openGalleryModal(this.querySelector('img'));">
+          <img src="./images/2.webp" alt="Products Display Area" loading="lazy" />
+        </div>
+
+        <div class="gallery-item" onclick="openGalleryModal(this.querySelector('img'));">
+          <img src="./images/3.webp" alt="Vinayak Xerox & Stationery Signboard" loading="lazy" />
+        </div>
+
+        <div class="gallery-item" onclick="openGalleryModal(this.querySelector('img'));">
+          <img src="./images/4.webp" alt="Professional Printing Machines" loading="lazy" />
+        </div>
+
+        <div class="gallery-item" onclick="openGalleryModal(this.querySelector('img'));">
+          <img src="./images/5.webp" alt="Shop Front View" loading="lazy" />
+        </div>
+
+        <div class="gallery-item" onclick="openGalleryModal(this.querySelector('img'));">
+          <img src="./images/6.webp" alt="Shop Exterior" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Modal -->
+  <div class="modal" id="imageModal" aria-hidden="true">
+    <span class="modal-close" onclick="closeImageModal()">&times;</span>
+    <img class="modal-content" id="modalImage" alt="Gallery Preview" />
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+
+  <!-- =========================
+    ABOUT
+  ========================= -->
+  <section class="about" id="about">
+    <div class="about-content">
+      <div class="about-text">
+        <h2>About Us</h2>
+        <p>
+          Vinayak Stationery & Xerox has been serving the community with dedication and quality for years.
+          We provide efficient, reliable, and affordable services to students, professionals, and businesses.
+        </p>
+        <p>
+          Our commitment is to deliver excellence in every service we provide, ensuring customer satisfaction
+          through quality products and timely delivery.
+        </p>
+
+        <div class="features">
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <div>
+              <strong>Quality Assured</strong>
+              <p>Premium quality materials and services</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <div>
+              <strong>Quick Service</strong>
+              <p>Fast turnaround time on all orders</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <div>
+              <strong>Affordable Rates</strong>
+              <p>Competitive pricing for all services</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-image">
+        <svg width="100%" height="400" viewBox="0 0 400 400" aria-label="Vinayak Stationery Icon">
+          <rect x="50" y="50" width="300" height="300" fill="#e0e7ff" rx="10"></rect>
+          <rect x="80" y="80" width="80" height="100" fill="#2563eb" rx="5"></rect>
+          <rect x="180" y="80" width="80" height="100" fill="#f59e0b" rx="5"></rect>
+          <rect x="280" y="80" width="40" height="100" fill="#10b981" rx="5"></rect>
+          <rect x="80" y="200" width="240" height="120" fill="#6366f1" rx="5"></rect>
+          <circle cx="200" cy="260" r="30" fill="#fff"></circle>
+          <text x="200" y="270" text-anchor="middle" fill="#2563eb" font-size="20" font-weight="bold">VS</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+    WHATSAPP (FILE SEND FLOW)
+  ========================= -->
+  <section class="whatsapp-section" id="whatsapp">
+    <div class="whatsapp-container">
+      <div class="whatsapp-header">
+        <div class="whatsapp-icon-large">💬</div>
+        <h2>Quick Connect via WhatsApp</h2>
+        <p>Message us instantly and share files for printing/xerox</p>
+      </div>
+
+      <div class="whatsapp-main-card">
+        <div class="whatsapp-features">
+          <div class="whatsapp-feature">
+            <div class="feature-icon-circle">✉️</div>
+            <h4>Instant Messaging</h4>
+            <p>Chat with us in real-time</p>
+          </div>
+
+          <div class="whatsapp-feature">
+            <div class="feature-icon-circle">📤</div>
+            <h4>Share Documents</h4>
+            <p>Send files for printing</p>
+          </div>
+
+          <div class="whatsapp-feature">
+            <div class="feature-icon-circle">⚡</div>
+            <h4>Fast Response</h4>
+            <p>Quick replies guaranteed</p>
+          </div>
+        </div>
+
+        <div class="whatsapp-action-area">
+          <div class="file-upload-box">
+            <div class="upload-icon">📄</div>
+            <h4>Send Your Files</h4>
+            <p>Select a file and we’ll open WhatsApp. Then attach & send it there.</p>
+
+            <div class="file-upload-controls">
+              <input type="file" id="fileInput" class="file-input" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
+              <label for="fileInput" class="file-select-btn">📎 Select File</label>
+
+              <div class="file-preview" id="filePreview" aria-hidden="true">
+                <div class="file-thumb" id="fileThumb" style="display:none;">
+                  <img id="fileThumbImg" src="" alt="Selected image preview" />
+                </div>
+
+                <div class="file-info" id="fileInfo" style="display:none;">
+                  <div class="file-icon">📄</div>
+                  <div>
+                    <div id="fileInfoName">filename.pdf</div>
+                    <div id="fileInfoSize"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="file-name" id="fileName">No file chosen</div>
+
+              <button class="send-file-btn" id="sendFileBtn" disabled>
+                <span class="whatsapp-btn-icon">📤</span> Send to WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp Confirmation Modal (outside section for clean UI) -->
+  <div class="theme-modal" id="sendConfirmModal" aria-hidden="true">
+    <div class="theme-modal-backdrop" id="sendModalBackdrop"></div>
+
+    <div class="theme-modal-card" role="dialog" aria-modal="true" aria-labelledby="sendModalTitle">
+      <button class="theme-modal-close" id="sendModalClose" aria-label="Close">&times;</button>
+
+      <div class="theme-modal-head">
+        <div class="theme-modal-icon">📤</div>
+        <div>
+          <h3 id="sendModalTitle">Send File on WhatsApp</h3>
+          <p class="theme-modal-sub">WhatsApp opened. Please attach and send the file there.</p>
+        </div>
+      </div>
+
+      <div class="theme-modal-preview" id="modalPreviewArea"></div>
+
+      <div class="theme-modal-note">
+        ✅ After sending the file in WhatsApp, come back and press <b>“I Sent”</b>.
+      </div>
+
+      <div class="theme-modal-actions">
+        <button class="theme-btn theme-btn-ghost" id="modalNotSentBtn">Not Sent</button>
+        <button class="theme-btn theme-btn-primary" id="modalISentBtn">I Sent ✅</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="theme-toast" id="sendToast" aria-hidden="true"></div>
+
+  <!-- =========================
+    MAP
+  ========================= -->
+  <section class="map-section" id="map">
+    <div class="map-container">
+      <div class="map-header">
+        <h2>📍 Find Us Here</h2>
+        <p>Visit our store at Nakshatra Arcade, Chandkheda, Ahmedabad</p>
+      </div>
+
+      <div class="map-wrapper">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.9684887515736!2d72.6114!3d23.0815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e873842c77f63%3A0x16caa79d4d856d7d!2sVinayak%20Xerox%20and%20Stationery!5e0!3m2!1sen!2sin!4v1234567890!5m2!1sen!2sin"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div class="map-actions">
+        <a class="directions-btn" target="_blank"
+           href="https://www.google.com/maps/dir//Vinayak+Xerox+And+Stationery,+ground+floor,+Nakshatra+Arcade,+04,+IOC+Rd,+near+canera+bank,+Vivekanand+Nagar,+D-Cabin,+Chandkheda,+Ahmedabad,+Gujarat+382424/">
+          🗺️ Open in Google Maps
+        </a>
+
+        <a class="whatsapp-directions-btn" target="_blank"
+           href="https://wa.me/919106298729?text=I%20want%20directions%20to%20your%20store%0Ahttps%3A%2F%2Fwww.google.com%2Fmaps%2Fdir%2F%2FVinayak%2BXerox%2BAnd%2BStationery%2C%2Bground%2Bfloor%2C%2BNakshatra%2BArcade%2C%2B04%2C%2BIOC%2BRd%2C%2Bnear%2Bcanera%2Bbank%2C%2BVivekanand%2BNagar%2C%2BD-Cabin%2C%2BChandkheda%2C%2BAhmedabad%2C%2BGujarat%2B382424/">
+          💬 Get Directions via WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+    CONTACT (NO FORM)
+  ========================= -->
+  <section class="contact-modern" id="contact">
+    <div class="contact-wrap">
+      <div class="contact-head">
+        <h2 class="contact-title">Contact Us</h2>
+        <p class="contact-subtitle">
+          Visit our shop or contact us anytime. We’re happy to help with printing, xerox & stationery.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="c-card">
+          <div class="c-icon">📍</div>
+          <h3 class="c-title">Address</h3>
+          <p class="c-text">
+            Ground Floor, Nakshatra Arcade, 04, IOC Rd,<br />
+            Near Canera Bank, Vivekanand Nagar,<br />
+            D-Cabin, Chandkheda, Ahmedabad,<br />
+            Gujarat 382424
+          </p>
+
+          <a class="c-btn" target="_blank"
+             href="https://www.google.com/maps/dir//Vinayak+Xerox+And+Stationery,+ground+floor,+Nakshatra+Arcade,+04,+IOC+Rd,+near+canera+bank,+Vivekanand+Nagar,+D-Cabin,+Chandkheda,+Ahmedabad,+Gujarat+382424/">
+            📍 Get Directions
+          </a>
+        </div>
+
+        <div class="c-card">
+          <div class="c-icon">📞</div>
+          <h3 class="c-title">Call / WhatsApp</h3>
+          <p class="c-text">
+            <a class="c-link" href="tel:+919106298729">+91 91062 98729</a>
+          </p>
+
+          <div class="c-mini">
+            <span class="pill">Fast Response</span>
+            <span class="pill">Order on WhatsApp</span>
+          </div>
+
+          <a class="c-btn" target="_blank"
+             href="https://wa.me/919106298729?text=Hello%20Vinayak%20Xerox%20%26%20Stationery!%20I%20want%20to%20enquire%20about%20printing%20%2F%20xerox.">
+            💬 Chat on WhatsApp
+          </a>
+        </div>
+
+        <div class="c-card">
+          <div class="c-icon">🕐</div>
+          <h3 class="c-title">Working Hours</h3>
+          <p class="c-text">
+            Mon - Sat: <b>9:00 AM - 8:00 PM</b><br />
+            Sunday: <b>10:00 AM - 6:00 PM</b>
+          </p>
+
+          <div class="c-mini">
+            <span class="pill">Open Daily</span>
+            <span class="pill">Walk-in Welcome</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+    FOOTER
+  ========================= -->
+  <footer>
+    <p>&copy; 2024 Vinayak Stationery & Xerox. All rights reserved.</p>
+    <p>Serving with quality and dedication</p>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <div class="floating-whatsapp">
+    <a class="floating-whatsapp-btn" target="_blank" title="Chat on WhatsApp"
+       href="https://wa.me/919106298729?text=Hello%20Vinayak%20Stationery!">
+      💬
+    </a>
+  </div>
+
+  <!-- ✅ IMPORTANT: defer -->
+  <script src="script.js" defer></script>
+</body>
+</html>
