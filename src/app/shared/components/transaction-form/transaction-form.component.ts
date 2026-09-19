@@ -1,5 +1,12 @@
 import { Component, computed, effect, input, output, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import {
   categoriesFor,
   Transaction,
@@ -7,10 +14,16 @@ import {
   TransactionType,
   typeLabel,
 } from '../../../core/models/transaction.model';
-import { todayIso } from '../../utils/date.utils';
+import { isFutureDate, todayIso } from '../../utils/date.utils';
 
 /** numeric(12,2) upper limit. */
 const MAX_AMOUNT = 9999999999.99;
+
+function noFutureDateValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+  if (!value) return null;
+  return isFutureDate(value) ? { futureDate: true } : null;
+}
 
 /**
  * One form for both income and expense:
@@ -29,11 +42,12 @@ const MAX_AMOUNT = 9999999999.99;
           id="t-date"
           class="input"
           type="date"
+          [max]="maxDate"
           formControlName="transaction_date"
           [class.invalid]="showError('transaction_date')"
         />
         @if (showError('transaction_date')) {
-          <p class="error-text">Date is required.</p>
+          <p class="error-text">{{ dateError() }}</p>
         }
       </div>
 
@@ -117,7 +131,7 @@ export class TransactionFormComponent {
   protected readonly form = new FormGroup({
     transaction_date: new FormControl(todayIso(), {
       nonNullable: true,
-      validators: [Validators.required],
+      validators: [Validators.required, noFutureDateValidator],
     }),
     category: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     amount: new FormControl<number | null>(null, {
@@ -125,6 +139,10 @@ export class TransactionFormComponent {
     }),
     description: new FormControl('', { nonNullable: true }),
   });
+
+  protected get maxDate(): string {
+    return todayIso();
+  }
 
   private readonly submitted = signal(false);
 
@@ -161,7 +179,14 @@ export class TransactionFormComponent {
 
   protected showError(name: 'transaction_date' | 'category' | 'amount'): boolean {
     const control = this.form.controls[name];
-    return control.invalid && (control.touched || this.submitted());
+    return control.invalid && (control.touched || control.dirty || this.submitted());
+  }
+
+  protected dateError(): string {
+    const errors = this.form.controls.transaction_date.errors;
+    if (errors?.['required']) return 'Date is required.';
+    if (errors?.['futureDate']) return 'Future dates are not allowed.';
+    return 'Invalid date.';
   }
 
   protected amountError(): string {

@@ -37,6 +37,12 @@ export function todayIso(): string {
   return toIsoDate(now.getFullYear(), now.getMonth() + 1, now.getDate());
 }
 
+/** Checks whether a date ('YYYY-MM-DD') is in the future. */
+export function isFutureDate(iso: string | null | undefined): boolean {
+  if (!iso) return false;
+  return iso > todayIso();
+}
+
 export function currentYear(): number {
   return new Date().getFullYear();
 }

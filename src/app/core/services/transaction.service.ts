@@ -12,6 +12,7 @@ import {
 } from '../models/transaction.model';
 import { SupabaseService } from '../supabase/supabase.service';
 import { subtractAmounts } from '../../shared/utils/currency.utils';
+import { isFutureDate } from '../../shared/utils/date.utils';
 
 const COLUMNS =
   'id, user_id, transaction_type, amount, category, description, transaction_date, created_at, updated_at';
@@ -105,6 +106,9 @@ export class TransactionService {
   }
 
   async createTransaction(input: TransactionInput): Promise<Transaction> {
+    if (isFutureDate(input.transaction_date)) {
+      throw new Error('Future dates are not allowed.');
+    }
     const user = await this.auth.getVerifiedUser();
 
     const { data, error } = await this.supabase
@@ -126,6 +130,9 @@ export class TransactionService {
 
   /** Only date, category, amount and description can change — never type or owner. */
   async updateTransaction(id: string, changes: TransactionChanges): Promise<Transaction> {
+    if (changes.transaction_date && isFutureDate(changes.transaction_date)) {
+      throw new Error('Future dates are not allowed.');
+    }
     const { data, error } = await this.supabase
       .from('transactions')
       .update({
