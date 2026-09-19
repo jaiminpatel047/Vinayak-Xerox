@@ -1,0 +1,3 @@
+[build]
+  command = "node scripts/generate-environment.js && npm run build"
+  publish = "dist/shop-ledger/browser"
